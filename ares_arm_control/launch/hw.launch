@@ -1,0 +1,14 @@
+<launch>
+    
+    <rosparam file="$(find ares_arm_simulation)/config/controller.yaml" command="load"/>
+    
+    <param name="robot_description" textfile="$(find deimos_control)/urdf/deimos.urdf" />
+
+    <node name="arm_interface" pkg="ares_arm_control" type="ares_interface" output="screen"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+      
+    <node name="controller_spawner" pkg= "controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller manipulator_controller "/>
+  
+  
+  </launch>
